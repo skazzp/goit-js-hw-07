@@ -29,5 +29,14 @@ function onImageClick(event) {
   const imageLink = event.target.dataset.source;
   const instance = basicLightbox.create(`<img src ="${imageLink}">`);
   instance.show();
+
+  function onButtonClose(e) {
+    if (e.code === 'Escape') {
+      document.removeEventListener('keydown', onButtonClose);
+      instance.close();
+    }
+  }
+  document.addEventListener('keydown', onButtonClose);
 }
+
 console.log(galleryItems);
